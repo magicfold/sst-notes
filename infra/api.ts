@@ -1,8 +1,15 @@
-import { bucket } from "./storage";
+import { table } from "./storage";
 
-export const api = new sst.aws.ApiGatewayV2("Api");
-
-api.route("GET /", {
-  link: [bucket],
-  handler: "packages/functions/src/api.handler",
+// Create the API
+export const api = new sst.aws.ApiGatewayV2("Api", {
+  // 通过使用 transform 属性，告诉 API 希望将给定的属性应用到 API 中的所有路由
+  transform: {
+    route: {
+      handler: {
+        link: [table], // 连接 DynamoDB 表
+      },
+    },
+  },
 });
+
+api.route("POST /notes", "packages/functions/src/create.main");
