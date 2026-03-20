@@ -1,0 +1,16 @@
+@baseUrl = https://03j2vkzgi6.execute-api.ap-southeast-2.amazonaws.com/
+
+### 获取所有笔记
+GET {{baseUrl}}/notes
+
+### 获取笔记
+GET {{baseUrl}}/notes/ce186d60-2371-11f1-9724-6bb4f8710853
+
+### 创建笔记
+POST {{baseUrl}}/notes
+Content-Type: application/json
+
+{
+    "content":"Hello World",
+    "attachment":"hello.jpg"
+}
