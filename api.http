@@ -14,3 +14,12 @@ Content-Type: application/json
     "content":"Hello World",
     "attachment":"hello.jpg"
 }
+
+### 更新笔记
+PUT {{baseUrl}}/notes/ce186d60-2371-11f1-9724-6bb4f8710853
+Content-Type: application/json
+
+{
+    "content":"New World",
+    "attachment":"new.jpg"
+}
