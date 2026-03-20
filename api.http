@@ -23,3 +23,6 @@ Content-Type: application/json
     "content":"New World",
     "attachment":"new.jpg"
 }
+
+### 删除笔记
+DELETE {{baseUrl}}/notes/ce186d60-2371-11f1-9724-6bb4f8710853
