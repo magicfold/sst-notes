@@ -8,6 +8,9 @@ export const api = new sst.aws.ApiGatewayV2("Api", {
       handler: {
         link: [table], // 连接 DynamoDB 表
       },
+      args: {
+        auth: { iam: true }, // 使用 IAM 身份验证
+      },
     },
   },
 });
