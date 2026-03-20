@@ -23,7 +23,7 @@ export const main = Util.handler(
       TableName: Resource.Notes.name, // 通过 Resource.Notes.name 使用 SST SDK 访问我们关联的 DynamoDB 表
       Item: {
         // The attributes of the item to be created
-        userId: "123", // The id of the author
+        userId: event.requestContext.authorizer?.iam.cognitoIdentity.identityId, // The id of the author
         noteId: uuid.v1(), // A unique uuid
         content: data.content, // Parsed from request body
         attachment: data.attachment, // Parsed from request body (如果存在的话。它是将上传到我们 S3 存储桶的文件的文件名。)
