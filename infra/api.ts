@@ -1,4 +1,4 @@
-import { table } from "./storage";
+import { table, secret } from "./storage";
 
 // Create the API
 export const api = new sst.aws.ApiGatewayV2("Api", {
@@ -6,7 +6,7 @@ export const api = new sst.aws.ApiGatewayV2("Api", {
   transform: {
     route: {
       handler: {
-        link: [table], // 连接 DynamoDB 表
+        link: [table, secret], // 连接 DynamoDB 表和 Secret
       },
       args: {
         auth: { iam: true }, // 使用 IAM 身份验证
