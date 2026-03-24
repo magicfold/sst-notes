@@ -29,6 +29,11 @@ export module Util {
       return {
         body,
         statusCode,
+        // CORS
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Credentials": true,
+        },
       };
     };
   }

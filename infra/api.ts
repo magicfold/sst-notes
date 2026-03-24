@@ -13,6 +13,8 @@ export const api = new sst.aws.ApiGatewayV2("Api", {
       },
     },
   },
+  // Enabled by default
+  cors: true,
 });
 
 api.route("POST /notes", "packages/functions/src/create.main");
