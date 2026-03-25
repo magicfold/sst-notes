@@ -2,11 +2,14 @@ import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Stack from "react-bootstrap/Stack";
 import Button from "react-bootstrap/Button";
+import { useNavigate } from "react-router-dom";
 import { Auth } from "aws-amplify";
 import "./Login.css";
+
 import { useAppContext } from "../lib/contextLib";
 
 export default function Login() {
+  const nav = useNavigate();
   const { userHasAuthenticated } = useAppContext();
 
   const [email, setEmail] = useState("");
@@ -22,6 +25,7 @@ export default function Login() {
     try {
       await Auth.signIn(email, password);
       userHasAuthenticated(true);
+      nav("/");
     } catch (error) {
       // Prints the full error
       console.error(error);
