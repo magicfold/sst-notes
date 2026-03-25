@@ -8,6 +8,7 @@ import { Auth } from "aws-amplify";
 import { AppContext, type AppContextType } from "./lib/contextLib";
 import Routes from "./Routes.tsx";
 import "./App.css";
+import { onError } from "./lib/errorLib.ts";
 
 function App() {
   const nav = useNavigate();
@@ -21,9 +22,9 @@ function App() {
       .then(() => {
         userHasAuthenticated(true);
       })
-      .catch((e) => {
-        if (e !== "No current user") {
-          alert(e);
+      .catch((error) => {
+        if (error !== "No current user") {
+          onError(error);
         }
       })
       .finally(() => {
