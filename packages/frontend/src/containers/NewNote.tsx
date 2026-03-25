@@ -8,6 +8,7 @@ import "./NewNote.css";
 import config from "../config";
 import LoaderButton from "../components/LoaderButton";
 import { onError } from "../lib/errorLib";
+import { s3Upload } from "../lib/awsLib";
 import type { NoteType } from "../types/note";
 
 export default function NewNote() {
@@ -46,7 +47,11 @@ export default function NewNote() {
     setIsLoading(true);
 
     try {
-      await createNote({ content });
+      const attachment = file.current
+        ? await s3Upload(file.current)
+        : undefined;
+
+      await createNote({ content, attachment });
       nav("/");
     } catch (e) {
       onError(e);
