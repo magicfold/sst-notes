@@ -32,7 +32,9 @@ function App() {
     onLoad();
   }, []);
 
-  function handleLogout() {
+  async function handleLogout() {
+    await Auth.signOut();
+
     userHasAuthenticated(false);
   }
 
