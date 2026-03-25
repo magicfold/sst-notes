@@ -1,4 +1,7 @@
 const config = {
+  STRIPE_KEY:
+    "pk_test_51TDDTx35iuIxzz5YKV70pR1VRjGrSfQdtBNTKowKJbYktFlWqXj88XQq7zCjE14Sl1pXvIM6vHHKnDXJBc41TPdB00PzVDEbOB",
+
   // Backend config
   s3: {
     REGION: import.meta.env.VITE_REGION,
