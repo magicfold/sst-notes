@@ -6,12 +6,28 @@ interface Props {
   children: ReactElement;
 }
 
+/*
+从 URL 中提取查询参数
+*/
+function querystring(name: string, url = window.location.href) {
+  const parsedName = name.replace(/[[]]/g, "\\$&");
+  const regex = new RegExp(`[?&]${parsedName}(=([^&#]*)|&|#|$)`, "i");
+  const results = regex.exec(url);
+
+  if (!results || !results[2]) {
+    return false;
+  }
+
+  return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
 export default function UnauthenticatedRoute(props: Props): ReactElement {
   const { isAuthenticated } = useAppContext();
   const { children } = props;
+  const redirect = querystring("redirect");
 
   if (isAuthenticated) {
-    return <Navigate to={"/"} />;
+    return <Navigate to={redirect || "/"} />;
   }
 
   // cloneElement，确保在 UnauthenticatedRoute 这种路由组件中，传递给其子组件的 状态（state） 能够被正确地处理和接收。
